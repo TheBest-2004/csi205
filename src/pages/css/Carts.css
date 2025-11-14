@@ -1,0 +1,91 @@
+/* PAGE LAYOUT */
+.page-container {
+    display: flex;
+    flex-direction: column; /* list + summary */
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+/* GRID */
+.products-itemps-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+/* CARD STYLE */
+.product-card {
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* IMAGE — React Bootstrap uses card-img-top */
+.product-card .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* CARD BODY */
+.product-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* TITLE */
+.product-card .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* PRICE */
+.product-card .card-text {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* BUTTON ALWAYS AT BOTTOM */
+.product-card .card-body > :last-child {
+    margin-top: auto;
+}
+
+/* CART SUMMARY BOX */
+.cart-summary {
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.cart-summary h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* RESPONSIVE GRID */
+@media (max-width: 992px) {
+  .products-itemps-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .products-itemps-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,27 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;   
+  text-align: center;
+  width: 100%;
+  height: 100%; 
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.home-container h2 {
+  font-size: 2.5rem;
+  color: #ef0707;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.student-info {
+  font-size: 1.5rem;
+  color: #f40404;
+}
+
+.profile-pic {
+  width: 500px;
+}
