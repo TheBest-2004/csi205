@@ -1,16 +1,14 @@
 import React from 'react';
 import './Home.css'; 
+import logo from '../assets/logo.jpg';
+
 
 const Home = () => {
   return (
     <div className="home-container">
       <div className="profile-card">
         
-        <img 
-          src="best.jpg" 
-          alt="รูปโปรไฟล์ของกฤษฎา"
-          className="profile-pic"
-        />
+        <img src={logo} alt="Logo" />
         
         <h1 className="profile-name">ชนันนัทธ์ จำเดิม (เบส)</h1>
         <p className="student-id">รหัสนักศึกษา: 67129397</p>
@@ -28,4 +26,3 @@ const Home = () => {
 }
 
 export default Home;
-

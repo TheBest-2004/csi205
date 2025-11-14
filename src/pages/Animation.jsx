@@ -1,12 +1,29 @@
 import { useState, useEffect, useRef } from "react";
 import "./Animation.css";
+
+// Import รูป field + ลูกบอล
+import fieldImg from "../assets/img/1.png";
+import basketball from "../assets/img/Basketball.png";
+import football from "../assets/img/Football.png";
+import volleyball from "../assets/img/Volleyball.png";
+import human from "../assets/img/Human.png";
+import anime from "../assets/img/Anime.png";
+
+const images = {
+  none: null,
+  basketball,
+  football,
+  volleyball,
+  human,
+  anime,
+};
+
 const Animation = () => {
   const [running, setRunning] = useState(false);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [selected, setSelected] = useState("none");
 
- 
   const fieldWidth = 650;
   const fieldHeight = 400;
   const ballDiameter = 100;
@@ -20,14 +37,8 @@ const Animation = () => {
   const goDown = useRef(true);
   const intervalRef = useRef(null);
 
-
   const handleRun = () => setRunning(!running);
-
-
-  const handleSelect = (name) => {
-    setSelected(name);
-  };
-
+  const handleSelect = (name) => setSelected(name);
 
   const calculate = () => {
     let newX = x;
@@ -53,7 +64,6 @@ const Animation = () => {
     setY(newY);
   };
 
-
   useEffect(() => {
     if (running) {
       intervalRef.current = setInterval(calculate, 25);
@@ -63,20 +73,19 @@ const Animation = () => {
     return () => clearInterval(intervalRef.current);
   }, [running, x, y]);
 
-
   const ballStyle = {
     left: `${x}px`,
     top: `${y}px`,
     width: `${ballDiameter}px`,
     height: `${ballDiameter}px`,
-    position: "relative",
+    position: "absolute",
     borderRadius: "50%",
     backgroundColor: selected === "none" ? "lightblue" : "transparent",
-    backgroundImage:
-      selected !== "none" ? `url(./img/${selected}.png)` : "none",
+    backgroundImage: selected !== "none" ? `url(${images[selected]})` : "none",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+    zIndex: 10,
   };
 
   return (
@@ -84,12 +93,15 @@ const Animation = () => {
       <div
         id="field"
         className="anim-field"
-        style={{ width: fieldWidth, height: fieldHeight }}
+        style={{
+          width: fieldWidth,
+          height: fieldHeight,
+          backgroundImage: `url(${fieldImg})`,
+        }}
       >
         <div id="ball" className="anim-ball" style={ballStyle}></div>
       </div>
 
- 
       <div className="anim-control d-flex justify-content-between">
         <button
           id="run"
@@ -111,21 +123,17 @@ const Animation = () => {
             None
           </button>
 
-          {["Basketball", "Football", "Volleyball", "Human", "Anime"].map(
-            (item) => (
-              <button
-                key={item}
-                className={`btn ${
-                  selected === item.toLowerCase()
-                    ? "btn-primary"
-                    : "btn-outline-primary"
-                } ms-1`}
-                onClick={() => handleSelect(item.toLowerCase())}
-              >
-                {item}
-              </button>
-            )
-          )}
+          {["basketball","football","volleyball","human","anime"].map((item) => (
+            <button
+              key={item}
+              className={`btn ${
+                selected === item ? "btn-primary" : "btn-outline-primary"
+              } ms-1`}
+              onClick={() => handleSelect(item)}
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </button>
+          ))}
         </div>
       </div>
 
